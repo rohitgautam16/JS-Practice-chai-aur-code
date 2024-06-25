@@ -4,38 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styleapi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body style="background-color: #212121; display: flex; justify-content: center;
-             align-items: center;">
+<body>
     <!-- 0	UNSENT	Client has been created. open() not called yet.
     1	OPENED	open() has been called.
     2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
     3	LOADING	Downloading; responseText holds partial data.
     4	DONE	The operation is complete. -->
 
-    <div class="card" style="display: flex;  max-width: 370px; width: 100%; padding: 25px; 
-         background-color: rgba(255,255,255,0.13); border-radius: 15px; 
-         backdrop-filter: blur(3px); flex-direction: column; justify-content: center; align-items: center; 
-    ">
-        <div class="profile-img" style="position: relative; height: 150px; width: 150px;
-             border-radius: 50%; padding: 3px; margin-bottom: 10px; background-color: #4070f4;">
-            <img style="height: 100%; width: 100%; object-fit: fill;
-                 border-radius: 50%; border: 5px solid rgba(255,255,255,0.13);" 
-                 src="https://avatars.githubusercontent.com/u/115552308?v=4">
+    <button class="animated-button">
+        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+        <span class="text">Get User Details</span>
+        <span class="circle"></span>
+        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+      </button>
+
+      <div class="details-card">
+        <label for="check">
+          <i class="fas fa-times" id="cancel"></i>
+        </label>
+        <div class="image">
+            <img src="https://avatars.githubusercontent.com/u/115552308?v=4" alt="profile-img" class="profile-img">
         </div>
-        <div class="count" style="color: #d0d1d6; display: flex; flex-direction: column; margin-left: 20px;">
-            <pre>     Followers Count :</pre>
-            <div>
-                <button style="outline: none; padding: 12px 0; background-color: rgba(179, 168, 168, 0.272);
-            border-radius: 15px; backdrop-filter: blur(4px); border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 2px 15px 0 rgba(255, 255, 255, 0.3); /* filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.3)); */
-            font-size: 20px; position: relative; width: 200px; border: none; color: #d0d1d6; font-weight: 400; border-radius: 5px;
-            cursor: pointer;" id="followers-count">
-              
-            </button>
+
+        <div class="data">
+            <div class="title"> Followers Count :</div>
+            <div class="buttons">
+                <button class="button"></button>
             </div>
-        </div>
-    </div>
+         </div>
+        
+      </div>
+      
 </body>
 <script>
     const requestUrl = 'https://api.github.com/users/rohitgautam16'
@@ -44,10 +54,16 @@
     xhr.onreadystatechange = function(){
         console.log(xhr.readyState);
         if (xhr.readyState === 4) {
-            const data = JSON.parse(this.responseText)
+            let data = JSON.parse(this.responseText)
             console.log(typeof data);
-           const followers = console.log(data.followers); 
-           document.querySelector('#followers-count').innerHTML = <p>`${followers}`</p>
+            let followersCount = console.log(data.followers);
+            console.log(typeof followersCount)
+            document.querySelector('.animated-button').addEventListener('click', function(){
+              let button = document.querySelector('.button')
+              button.append = followersCount
+            })
+
+          
         }
     }
     
