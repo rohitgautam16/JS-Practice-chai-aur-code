@@ -5,18 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body style="background-color: #212121;">
-    0	UNSENT	Client has been created. open() not called yet.
+<body style="background-color: #212121; display: flex; justify-content: center;
+             align-items: center;">
+    <!-- 0	UNSENT	Client has been created. open() not called yet.
     1	OPENED	open() has been called.
     2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
     3	LOADING	Downloading; responseText holds partial data.
-    4	DONE	The operation is complete.
+    4	DONE	The operation is complete. -->
+
+    <div class="card" style="display: flex;  max-width: 370px; width: 100%; padding: 25px; 
+         background-color: rgba(255,255,255,0.13); border-radius: 15px; 
+         backdrop-filter: blur(3px); flex-direction: column; justify-content: center; align-items: center; 
+    ">
+        <div class="profile-img" style="position: relative; height: 150px; width: 150px;
+             border-radius: 50%; padding: 3px; margin-bottom: 10px; background-color: #4070f4;">
+            <img style="height: 100%; width: 100%; object-fit: fill;
+                 border-radius: 50%; border: 5px solid rgba(255,255,255,0.13);" 
+                 src="https://avatars.githubusercontent.com/u/115552308?v=4">
+        </div>
+        <div class="count" style="color: #d0d1d6; display: flex; flex-direction: column; margin-left: 20px;">
+            <pre>     Followers Count :</pre>
+            <div>
+                <button style="outline: none; padding: 12px 0; background-color: rgba(179, 168, 168, 0.272);
+            border-radius: 15px; backdrop-filter: blur(4px); border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 2px 15px 0 rgba(255, 255, 255, 0.3); /* filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.3)); */
+            font-size: 20px; position: relative; width: 200px; border: none; color: #d0d1d6; font-weight: 400; border-radius: 5px;
+            cursor: pointer;" id="followers-count">
+              
+            </button>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     const requestUrl = 'https://api.github.com/users/rohitgautam16'
     const xhr = new XMLHttpRequest()
     xhr.open('GET',requestUrl)
-    console.log(xhr.readyState);
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText)
+            console.log(typeof data);
+           const followers = console.log(data.followers); 
+           document.querySelector('#followers-count').innerHTML = <p>`${followers}`</p>
+        }
+    }
+    
     xhr.send()
 </script>
 </html>
