@@ -55,12 +55,12 @@
         console.log(xhr.readyState);
         if (xhr.readyState === 4) {
             let data = JSON.parse(this.responseText)
-            console.log(typeof data);
-            let followersCount = console.log(data.followers);
-            console.log(typeof followersCount)
+            // console.log(typeof data);
+            let followersCount = data.followers;
+            // console.log(typeof followersCount)
             document.querySelector('.animated-button').addEventListener('click', function(){
               let button = document.querySelector('.button')
-              button.append = followersCount
+              button.innerHTML += followersCount;
             })
 
           

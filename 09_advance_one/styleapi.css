@@ -196,6 +196,7 @@ body{
 }
 
 #check:checked ~ .details-card{
-  transform: translateX(0);
-  transform: translateY(0);
+  transform: translateX(-0);
+  transform: translateY(-0);
 }
+
