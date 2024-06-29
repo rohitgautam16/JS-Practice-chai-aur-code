@@ -30,18 +30,18 @@
       </button>
 
       <div class="details-card">
-        <label for="check">
-          <i class="fas fa-times" id="cancel"></i>
-        </label>
-        <div class="image">
-            <img src="https://avatars.githubusercontent.com/u/115552308?v=4" alt="profile-img" class="profile-img">
-        </div>
+        
 
         <div class="data">
+          <div class="image">
+            <img src="https://avatars.githubusercontent.com/u/115552308?v=4" alt="profile-img" class="profile-img">
+        </div>
             <div class="title"> Followers Count :</div>
             <div class="buttons">
                 <button class="button"></button>
+                <button class="close-btn">Close</button>
             </div>
+            
          </div>
         
       </div>
@@ -61,12 +61,26 @@
             document.querySelector('.animated-button').addEventListener('click', function(){
               let button = document.querySelector('.button')
               button.innerHTML += followersCount;
-            })
+            },{once:true});
 
           
         }
     }
     
     xhr.send()
+
+    const showPopUp = document.querySelector('.animated-button')
+    const PopUpContainer = document.querySelector('.details-card')
+    const closeButton = document.querySelector('.close-btn')
+
+    showPopUp.onclick = () => {
+      PopUpContainer.classList.add('active');
+      showPopUp.classList.add('active');
+    }
+
+    closeButton.onclick = () => {
+      PopUpContainer.classList.remove('active');
+      showPopUp.classList.remove('active');
+    }
 </script>
 </html>
